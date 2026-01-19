@@ -1,5 +1,9 @@
 // Yoon's Portfolio - Interactive JavaScript
 
+// Lightbox Variables
+let currentImageIndex = 0;
+let galleryImages = [];
+
 document.addEventListener('DOMContentLoaded', function() {
     // Initialize all features
     initMobileMenu();
@@ -10,7 +14,149 @@ document.addEventListener('DOMContentLoaded', function() {
     initContactForm();
     initParallaxEffects();
     initCursorEffects();
+    initLightbox();
+    initFloatingBubbles();
 });
+
+// Initialize Lightbox with all gallery images
+function initLightbox() {
+    galleryImages = [
+        { src: 'images/christmas2.jpg', caption: '🎄 Christmas Performance - Wells International School' },
+        { src: 'images/christmas1.jpg', caption: '🎄 Christmas Joy with Students' },
+        { src: 'images/christmas-heart.jpg', caption: '💕 Spreading Love and Joy' },
+        { src: 'images/teaching1.jpg', caption: '✏️ Teaching Time - Engaging Young Minds' },
+        { src: 'images/classroom.jpg', caption: '👩‍🏫 Teacher Yoon in Action' },
+        { src: 'images/students1.jpg', caption: '🌟 Happy Students Learning Together' },
+        { src: 'images/nelc-class.jpg', caption: '🏆 Certificate Day at NELC - Proud of my students!' },
+        { src: 'images/teaching2.jpg', caption: '📚 Classroom Fun and Learning' },
+        { src: 'images/thingyan.jpg', caption: '🎊 Thingyan Festival - Traditional celebration' },
+        { src: 'images/parent-meeting.jpg', caption: '👨‍👩‍👧 Parent Conferences - Building strong connections' }
+    ];
+
+    // Close lightbox on Escape key
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') {
+            closeLightbox();
+        } else if (e.key === 'ArrowLeft') {
+            changeLightboxImage(-1);
+        } else if (e.key === 'ArrowRight') {
+            changeLightboxImage(1);
+        }
+    });
+
+    // Close on overlay click
+    const lightbox = document.getElementById('lightbox');
+    if (lightbox) {
+        lightbox.addEventListener('click', function(e) {
+            if (e.target === lightbox) {
+                closeLightbox();
+            }
+        });
+    }
+}
+
+// Open Lightbox with specific image
+function openLightbox(imgSrc, caption) {
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = document.getElementById('lightbox-img');
+    const lightboxCaption = document.getElementById('lightbox-caption');
+    
+    if (lightbox && lightboxImg) {
+        // Find image index
+        currentImageIndex = galleryImages.findIndex(img => img.src === imgSrc);
+        if (currentImageIndex === -1) currentImageIndex = 0;
+        
+        lightboxImg.src = imgSrc;
+        lightboxCaption.textContent = caption || '';
+        lightbox.classList.add('active');
+        document.body.style.overflow = 'hidden';
+        
+        // Add entrance animation
+        lightboxImg.style.animation = 'bounceIn 0.5s ease-out';
+    }
+}
+
+// Close Lightbox
+function closeLightbox() {
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = document.getElementById('lightbox-img');
+    
+    if (lightbox) {
+        lightboxImg.style.animation = 'fadeOut 0.3s ease-out';
+        setTimeout(() => {
+            lightbox.classList.remove('active');
+            document.body.style.overflow = '';
+        }, 200);
+    }
+}
+
+// Change Lightbox Image (prev/next)
+function changeLightboxImage(direction) {
+    if (galleryImages.length === 0) return;
+    
+    currentImageIndex += direction;
+    
+    // Loop around
+    if (currentImageIndex >= galleryImages.length) {
+        currentImageIndex = 0;
+    } else if (currentImageIndex < 0) {
+        currentImageIndex = galleryImages.length - 1;
+    }
+    
+    const lightboxImg = document.getElementById('lightbox-img');
+    const lightboxCaption = document.getElementById('lightbox-caption');
+    
+    // Add slide animation
+    lightboxImg.style.animation = direction > 0 ? 'slideInRight 0.3s ease-out' : 'slideInLeft 0.3s ease-out';
+    
+    lightboxImg.src = galleryImages[currentImageIndex].src;
+    lightboxCaption.textContent = galleryImages[currentImageIndex].caption;
+}
+
+// Fun Floating Bubbles for kid-friendly feel
+function initFloatingBubbles() {
+    const bubbleContainer = document.createElement('div');
+    bubbleContainer.className = 'bubble-container';
+    bubbleContainer.style.cssText = `
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+        z-index: 1;
+        overflow: hidden;
+    `;
+    document.body.appendChild(bubbleContainer);
+
+    function createBubble() {
+        const bubble = document.createElement('div');
+        const size = Math.random() * 30 + 10;
+        const emojis = ['🌟', '✨', '💖', '🎈', '🌸', '🎀', '⭐', '🦋', '🌈', '🎵'];
+        
+        bubble.innerHTML = emojis[Math.floor(Math.random() * emojis.length)];
+        bubble.style.cssText = `
+            position: absolute;
+            font-size: ${size}px;
+            left: ${Math.random() * 100}%;
+            bottom: -50px;
+            opacity: 0.3;
+            animation: bubbleFloat ${Math.random() * 10 + 10}s linear forwards;
+        `;
+        
+        bubbleContainer.appendChild(bubble);
+        
+        setTimeout(() => bubble.remove(), 20000);
+    }
+
+    // Create bubbles periodically
+    setInterval(createBubble, 3000);
+    
+    // Create a few initial bubbles
+    for (let i = 0; i < 5; i++) {
+        setTimeout(createBubble, i * 500);
+    }
+}
 
 // Mobile Menu Toggle
 function initMobileMenu() {

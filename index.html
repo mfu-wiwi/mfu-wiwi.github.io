@@ -5,6 +5,28 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Yoon Nadi Htet | English Teacher</title>
     <meta name="description" content="Yoon Nadi Htet - Dedicated English Teacher with passion for young learners">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://yoonnadihtet.me/">
+    <meta property="og:title" content="Yoon Nadi Htet | English Teacher 👩‍🏫">
+    <meta property="og:description" content="Dedicated English Teacher with 2+ years of experience. Passionate about making learning fun for young minds! 🎉">
+    <meta property="og:image" content="https://yoonnadihtet.me/images/classroom.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:url" content="https://yoonnadihtet.me/">
+    <meta name="twitter:title" content="Yoon Nadi Htet | English Teacher 👩‍🏫">
+    <meta name="twitter:description" content="Dedicated English Teacher with 2+ years of experience. Passionate about making learning fun for young minds! 🎉">
+    <meta name="twitter:image" content="https://yoonnadihtet.me/images/classroom.jpg">
+    
+    <!-- Additional Meta -->
+    <meta name="theme-color" content="#FF6B9D">
+    <meta name="author" content="Yoon Nadi Htet">
+    <link rel="canonical" href="https://yoonnadihtet.me/">
+    
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -43,7 +65,23 @@
         <div class="floating-shape shape-4">🎨</div>
         <div class="floating-shape shape-5">🌈</div>
         <div class="floating-shape shape-6">❤️</div>
+        <div class="floating-shape shape-7">🍎</div>
+        <div class="floating-shape shape-8">🎒</div>
+        <div class="floating-shape shape-9">✨</div>
+        <div class="floating-shape shape-10">🦋</div>
     </div>
+
+    <!-- Lightbox Modal for Full Image View -->
+    <div id="lightbox" class="lightbox-overlay">
+        <button class="lightbox-close" onclick="closeLightbox()">&times;</button>
+        <button class="lightbox-prev" onclick="changeLightboxImage(-1)">&#10094;</button>
+        <img id="lightbox-img" src="" alt="Full size image">
+        <button class="lightbox-next" onclick="changeLightboxImage(1)">&#10095;</button>
+        <p id="lightbox-caption" class="lightbox-caption"></p>
+    </div>
+
+    <!-- Cute Confetti Canvas -->
+    <canvas id="confetti-canvas"></canvas>
 
     <!-- Navigation -->
     <nav class="fixed w-full top-0 z-50 bg-white/90 backdrop-blur-md shadow-lg">
@@ -139,8 +177,8 @@
                     <div class="relative">
                         <div class="absolute -inset-4 bg-gradient-to-r from-primary via-secondary to-accent rounded-full blur-2xl opacity-40 animate-pulse-slow"></div>
                         <div class="relative">
-                            <div class="w-64 h-64 sm:w-80 sm:h-80 lg:w-96 lg:h-96 rounded-full overflow-hidden border-8 border-white shadow-2xl transform hover:scale-105 transition-transform duration-500">
-                                <img src="images/profile.jpg" alt="Yoon Nadi Htet" class="w-full h-full object-cover">
+                            <div class="w-64 h-64 sm:w-80 sm:h-80 lg:w-96 lg:h-96 rounded-full overflow-hidden border-8 border-white shadow-2xl transform hover:scale-105 transition-transform duration-500 profile-glow">
+                                <img src="images/classroom.jpg" alt="Yoon Nadi Htet" class="w-full h-full object-cover">
                             </div>
                             <div class="absolute -bottom-4 -right-4 bg-white rounded-2xl p-4 shadow-xl animate-float">
                                 <span class="text-4xl">👩‍🏫</span>
@@ -451,108 +489,124 @@
 
     <!-- Gallery Section -->
     <section id="gallery" class="py-20 bg-gradient-to-br from-cream via-light to-mint relative overflow-hidden">
+        <!-- Cute chalkboard decorations -->
+        <div class="absolute top-10 left-10 text-4xl animate-wiggle opacity-20">🍎</div>
+        <div class="absolute top-20 right-20 text-4xl animate-float opacity-20">📝</div>
+        <div class="absolute bottom-20 left-20 text-4xl animate-bounce-slow opacity-20">🎒</div>
+        
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             <div class="text-center mb-16">
-                <span class="inline-block bg-accent/20 text-accent px-4 py-2 rounded-full text-sm font-semibold mb-4">
+                <span class="inline-block bg-accent/20 text-accent px-4 py-2 rounded-full text-sm font-semibold mb-4 animate-bounce-slow">
                     📸 Memories
                 </span>
                 <h2 class="font-fredoka text-3xl sm:text-4xl lg:text-5xl text-gray-800 mb-4">
-                    Teaching <span class="text-accent">Gallery</span>
+                    Teaching <span class="text-accent rainbow-text">Gallery</span>
                 </h2>
                 <div class="flex items-center justify-center gap-2">
                     <span class="h-1 w-20 bg-accent rounded-full"></span>
-                    <span class="text-2xl">🎨</span>
+                    <span class="text-2xl animate-wiggle">🎨</span>
                     <span class="h-1 w-20 bg-accent rounded-full"></span>
                 </div>
                 <p class="text-gray-600 mt-4 max-w-2xl mx-auto">
-                    Beautiful moments with my amazing students! Every smile tells a story of learning and joy. 💖
+                    Beautiful moments with my amazing students! Click any photo to view full size! �✨
                 </p>
             </div>
 
-            <!-- Masonry Gallery Grid -->
+            <!-- Masonry Gallery Grid with Lightbox -->
             <div class="gallery-masonry">
                 <!-- Row 1 -->
                 <div class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 mb-4 md:mb-6">
-                    <div class="gallery-item rounded-3xl overflow-hidden shadow-xl hover-lift group col-span-2 row-span-2">
+                    <div class="gallery-item rounded-3xl overflow-hidden shadow-xl hover-lift group col-span-2 row-span-2 cursor-pointer" onclick="openLightbox('images/christmas2.jpg', '🎄 Christmas Performance - Wells International School')">
                         <img src="images/christmas2.jpg" alt="Christmas Performance" class="w-full h-64 md:h-full object-cover">
                         <div class="gallery-overlay">
                             <span class="text-white font-semibold text-lg">🎄 Christmas Performance</span>
                             <p class="text-white/80 text-sm mt-1">Wells International School</p>
+                            <span class="view-btn">👁️ Click to View Full</span>
                         </div>
-                        <div class="absolute top-4 right-4 bg-white/90 rounded-full px-3 py-1 text-xs font-semibold text-primary opacity-0 group-hover:opacity-100 transition-all">
+                        <div class="absolute top-4 right-4 bg-white/90 rounded-full px-3 py-1 text-xs font-semibold text-primary opacity-0 group-hover:opacity-100 transition-all animate-bounce-slow">
                             ✨ Featured
                         </div>
                     </div>
-                    <div class="gallery-item rounded-3xl overflow-hidden shadow-xl hover-lift group">
+                    <div class="gallery-item rounded-3xl overflow-hidden shadow-xl hover-lift group cursor-pointer" onclick="openLightbox('images/christmas1.jpg', '🎄 Christmas Joy with Students')">
                         <img src="images/christmas1.jpg" alt="Christmas with Students" class="w-full h-48 md:h-56 object-cover">
                         <div class="gallery-overlay">
                             <span class="text-white font-semibold">Christmas Joy 🎄</span>
+                            <span class="view-btn">👁️ View Full</span>
                         </div>
                     </div>
-                    <div class="gallery-item rounded-3xl overflow-hidden shadow-xl hover-lift group">
+                    <div class="gallery-item rounded-3xl overflow-hidden shadow-xl hover-lift group cursor-pointer" onclick="openLightbox('images/christmas-heart.jpg', '💕 Spreading Love and Joy')">
                         <img src="images/christmas-heart.jpg" alt="Heart Pose" class="w-full h-48 md:h-56 object-cover">
                         <div class="gallery-overlay">
                             <span class="text-white font-semibold">Spreading Love 💕</span>
+                            <span class="view-btn">👁️ View Full</span>
                         </div>
                     </div>
-                    <div class="gallery-item rounded-3xl overflow-hidden shadow-xl hover-lift group">
+                    <div class="gallery-item rounded-3xl overflow-hidden shadow-xl hover-lift group cursor-pointer" onclick="openLightbox('images/teaching1.jpg', '✏️ Teaching Time - Engaging Young Minds')">
                         <img src="images/teaching1.jpg" alt="Teaching Moment" class="w-full h-48 md:h-56 object-cover">
                         <div class="gallery-overlay">
                             <span class="text-white font-semibold">Teaching Time ✏️</span>
+                            <span class="view-btn">👁️ View Full</span>
                         </div>
                     </div>
-                    <div class="gallery-item rounded-3xl overflow-hidden shadow-xl hover-lift group">
-                        <img src="images/profile.jpg" alt="Teacher Yoon" class="w-full h-48 md:h-56 object-cover">
+                    <div class="gallery-item rounded-3xl overflow-hidden shadow-xl hover-lift group cursor-pointer" onclick="openLightbox('images/classroom.jpg', '👩‍🏫 Teacher Yoon in Action')">
+                        <img src="images/classroom.jpg" alt="Teacher Yoon" class="w-full h-48 md:h-56 object-cover">
                         <div class="gallery-overlay">
                             <span class="text-white font-semibold">Teacher Yoon 👩‍🏫</span>
+                            <span class="view-btn">👁️ View Full</span>
                         </div>
                     </div>
                 </div>
                 
                 <!-- Row 2 -->
                 <div class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 mb-4 md:mb-6">
-                    <div class="gallery-item rounded-3xl overflow-hidden shadow-xl hover-lift group">
+                    <div class="gallery-item rounded-3xl overflow-hidden shadow-xl hover-lift group cursor-pointer" onclick="openLightbox('images/students1.jpg', '🌟 Happy Students Learning Together')">
                         <img src="images/students1.jpg" alt="Happy Students" class="w-full h-48 md:h-56 object-cover">
                         <div class="gallery-overlay">
                             <span class="text-white font-semibold">Happy Students 🌟</span>
+                            <span class="view-btn">👁️ View Full</span>
                         </div>
                     </div>
-                    <div class="gallery-item rounded-3xl overflow-hidden shadow-xl hover-lift group col-span-2">
+                    <div class="gallery-item rounded-3xl overflow-hidden shadow-xl hover-lift group col-span-2 cursor-pointer" onclick="openLightbox('images/nelc-class.jpg', '🏆 Certificate Day at NELC - Proud of my students!')">
                         <img src="images/nelc-class.jpg" alt="NELC Classroom" class="w-full h-48 md:h-56 object-cover">
                         <div class="gallery-overlay">
                             <span class="text-white font-semibold">🏆 Certificate Day at NELC</span>
                             <p class="text-white/80 text-sm mt-1">Proud of my students!</p>
+                            <span class="view-btn">👁️ View Full</span>
                         </div>
                     </div>
-                    <div class="gallery-item rounded-3xl overflow-hidden shadow-xl hover-lift group">
+                    <div class="gallery-item rounded-3xl overflow-hidden shadow-xl hover-lift group cursor-pointer" onclick="openLightbox('images/teaching2.jpg', '📚 Classroom Fun and Learning')">
                         <img src="images/teaching2.jpg" alt="Group Photo" class="w-full h-48 md:h-56 object-cover">
                         <div class="gallery-overlay">
                             <span class="text-white font-semibold">Classroom Fun 📚</span>
+                            <span class="view-btn">👁️ View Full</span>
                         </div>
                     </div>
                 </div>
 
                 <!-- Row 3 -->
                 <div class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
-                    <div class="gallery-item rounded-3xl overflow-hidden shadow-xl hover-lift group">
+                    <div class="gallery-item rounded-3xl overflow-hidden shadow-xl hover-lift group cursor-pointer" onclick="openLightbox('images/thingyan.jpg', '🎊 Thingyan Festival - Traditional Celebration')">
                         <img src="images/thingyan.jpg" alt="Thingyan Festival" class="w-full h-48 md:h-56 object-cover">
                         <div class="gallery-overlay">
                             <span class="text-white font-semibold">🎊 Thingyan Festival</span>
                             <p class="text-white/80 text-sm mt-1">Traditional celebration</p>
+                            <span class="view-btn">👁️ View Full</span>
                         </div>
                     </div>
-                    <div class="gallery-item rounded-3xl overflow-hidden shadow-xl hover-lift group col-span-2">
+                    <div class="gallery-item rounded-3xl overflow-hidden shadow-xl hover-lift group col-span-2 cursor-pointer" onclick="openLightbox('images/parent-meeting.jpg', '👨‍👩‍👧 Parent Conferences - Building Strong Connections')">
                         <img src="images/parent-meeting.jpg" alt="Parent Meeting" class="w-full h-48 md:h-56 object-cover">
                         <div class="gallery-overlay">
                             <span class="text-white font-semibold">👨‍👩‍👧 Parent Conferences</span>
                             <p class="text-white/80 text-sm mt-1">Building strong connections</p>
+                            <span class="view-btn">👁️ View Full</span>
                         </div>
                     </div>
-                    <div class="gallery-item rounded-3xl overflow-hidden shadow-xl hover-lift group">
-                        <img src="images/classroom.jpg" alt="Classroom Activities" class="w-full h-48 md:h-56 object-cover">
+                    <div class="gallery-item rounded-3xl overflow-hidden shadow-xl hover-lift group cursor-pointer" onclick="openLightbox('images/teaching1.jpg', '🎒 Interactive Classroom Fun')">
+                        <img src="images/teaching1.jpg" alt="Classroom Activities" class="w-full h-48 md:h-56 object-cover">
                         <div class="gallery-overlay">
                             <span class="text-white font-semibold">🎒 Classroom Fun</span>
                             <p class="text-white/80 text-sm mt-1">Learning together!</p>
+                            <span class="view-btn">👁️ View Full</span>
                         </div>
                     </div>
                 </div>
@@ -560,11 +614,89 @@
 
             <!-- Gallery CTA -->
             <div class="text-center mt-12">
-                <p class="text-gray-600 mb-4">✨ Every moment is a chance to inspire young minds! ✨</p>
+                <p class="text-gray-600 mb-4">✨ Every moment is a chance to inspire young minds! Click any photo to see full size! ✨</p>
                 <div class="flex justify-center gap-4 flex-wrap">
-                    <span class="bg-primary/10 text-primary px-4 py-2 rounded-full text-sm font-medium">🎄 Holiday Events</span>
-                    <span class="bg-accent/10 text-accent px-4 py-2 rounded-full text-sm font-medium">📚 Classroom Activities</span>
-                    <span class="bg-secondary/10 text-amber-600 px-4 py-2 rounded-full text-sm font-medium">🎊 Cultural Celebrations</span>
+                    <span class="bg-primary/10 text-primary px-4 py-2 rounded-full text-sm font-medium cute-tag">🎄 Holiday Events</span>
+                    <span class="bg-accent/10 text-accent px-4 py-2 rounded-full text-sm font-medium cute-tag">📚 Classroom Activities</span>
+                    <span class="bg-secondary/10 text-amber-600 px-4 py-2 rounded-full text-sm font-medium cute-tag">🎊 Cultural Celebrations</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Teaching Philosophy Section (New!) -->
+    <section class="py-20 bg-white relative overflow-hidden">
+        <div class="absolute top-10 right-10 text-6xl opacity-10 animate-float">🍎</div>
+        <div class="absolute bottom-10 left-10 text-6xl opacity-10 animate-wiggle">🎨</div>
+        
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="text-center mb-16">
+                <span class="inline-block bg-pink-100 text-primary px-4 py-2 rounded-full text-sm font-semibold mb-4">
+                    💝 My Teaching Philosophy
+                </span>
+                <h2 class="font-fredoka text-3xl sm:text-4xl lg:text-5xl text-gray-800 mb-4">
+                    Learning Should Be <span class="text-primary rainbow-text">Fun!</span>
+                </h2>
+                <div class="flex items-center justify-center gap-2">
+                    <span class="h-1 w-20 bg-primary rounded-full"></span>
+                    <span class="text-2xl animate-bounce-slow">🌟</span>
+                    <span class="h-1 w-20 bg-primary rounded-full"></span>
+                </div>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="philosophy-card bg-gradient-to-br from-pink-50 to-primary/10 rounded-3xl p-8 text-center hover-lift border-2 border-dashed border-primary/30">
+                    <div class="w-24 h-24 bg-white rounded-full flex items-center justify-center mx-auto mb-6 shadow-lg animate-float">
+                        <span class="text-5xl">🎮</span>
+                    </div>
+                    <h3 class="font-fredoka text-xl text-gray-800 mb-4">Play & Learn</h3>
+                    <p class="text-gray-600 text-sm">
+                        Games and activities make learning English exciting and memorable for kids!
+                    </p>
+                </div>
+
+                <div class="philosophy-card bg-gradient-to-br from-yellow-50 to-secondary/10 rounded-3xl p-8 text-center hover-lift border-2 border-dashed border-secondary/30">
+                    <div class="w-24 h-24 bg-white rounded-full flex items-center justify-center mx-auto mb-6 shadow-lg animate-float" style="animation-delay: 0.5s;">
+                        <span class="text-5xl">🤗</span>
+                    </div>
+                    <h3 class="font-fredoka text-xl text-gray-800 mb-4">Safe & Supportive</h3>
+                    <p class="text-gray-600 text-sm">
+                        Every child deserves a nurturing environment where mistakes are okay!
+                    </p>
+                </div>
+
+                <div class="philosophy-card bg-gradient-to-br from-green-50 to-accent/10 rounded-3xl p-8 text-center hover-lift border-2 border-dashed border-accent/30">
+                    <div class="w-24 h-24 bg-white rounded-full flex items-center justify-center mx-auto mb-6 shadow-lg animate-float" style="animation-delay: 1s;">
+                        <span class="text-5xl">🌈</span>
+                    </div>
+                    <h3 class="font-fredoka text-xl text-gray-800 mb-4">Creative Expression</h3>
+                    <p class="text-gray-600 text-sm">
+                        Encouraging creativity through stories, songs, and art projects!
+                    </p>
+                </div>
+            </div>
+
+            <!-- Cute Stats -->
+            <div class="mt-16 grid grid-cols-2 md:grid-cols-4 gap-6">
+                <div class="stat-card bg-white rounded-3xl p-6 text-center shadow-xl hover-lift rainbow-border">
+                    <span class="text-4xl block mb-2">👶</span>
+                    <p class="font-fredoka text-3xl text-primary counter" data-target="100">100+</p>
+                    <p class="text-gray-500 text-sm">Happy Students</p>
+                </div>
+                <div class="stat-card bg-white rounded-3xl p-6 text-center shadow-xl hover-lift rainbow-border">
+                    <span class="text-4xl block mb-2">📖</span>
+                    <p class="font-fredoka text-3xl text-accent counter" data-target="500">500+</p>
+                    <p class="text-gray-500 text-sm">Lessons Taught</p>
+                </div>
+                <div class="stat-card bg-white rounded-3xl p-6 text-center shadow-xl hover-lift rainbow-border">
+                    <span class="text-4xl block mb-2">🎯</span>
+                    <p class="font-fredoka text-3xl text-secondary counter" data-target="2">2+</p>
+                    <p class="text-gray-500 text-sm">Years Experience</p>
+                </div>
+                <div class="stat-card bg-white rounded-3xl p-6 text-center shadow-xl hover-lift rainbow-border">
+                    <span class="text-4xl block mb-2">💯</span>
+                    <p class="font-fredoka text-3xl text-accent2">∞</p>
+                    <p class="text-gray-500 text-sm">Love for Teaching</p>
                 </div>
             </div>
         </div>
@@ -739,16 +871,16 @@
                     <div class="bg-white rounded-3xl p-6 shadow-xl">
                         <h3 class="font-semibold text-gray-800 mb-4">Connect with me!</h3>
                         <div class="flex gap-4">
-                            <a href="mailto:yoonnadihtet359@gmail.com" class="w-12 h-12 bg-primary/20 rounded-xl flex items-center justify-center text-primary hover:bg-primary hover:text-white transition-all">
+                            <a href="mailto:yoonnadihtet359@gmail.com" class="w-12 h-12 bg-primary/20 rounded-xl flex items-center justify-center text-primary hover:bg-primary hover:text-white transition-all social-icon-bounce">
                                 <i class="fas fa-envelope"></i>
                             </a>
-                            <a href="#" class="w-12 h-12 bg-accent2/20 rounded-xl flex items-center justify-center text-accent2 hover:bg-accent2 hover:text-white transition-all">
+                            <a href="https://facebook.com/yoonnadi.htet.391" target="_blank" rel="noopener noreferrer" class="w-12 h-12 bg-accent2/20 rounded-xl flex items-center justify-center text-accent2 hover:bg-accent2 hover:text-white transition-all social-icon-bounce">
                                 <i class="fab fa-facebook-f"></i>
                             </a>
-                            <a href="#" class="w-12 h-12 bg-pink-100 rounded-xl flex items-center justify-center text-pink-500 hover:bg-pink-500 hover:text-white transition-all">
+                            <a href="https://www.instagram.com/its_boring_yoon?igsh=MXN1bWdobjVpb3o3MA==" target="_blank" rel="noopener noreferrer" class="w-12 h-12 bg-pink-100 rounded-xl flex items-center justify-center text-pink-500 hover:bg-pink-500 hover:text-white transition-all social-icon-bounce">
                                 <i class="fab fa-instagram"></i>
                             </a>
-                            <a href="#" class="w-12 h-12 bg-accent/20 rounded-xl flex items-center justify-center text-accent hover:bg-accent hover:text-white transition-all">
+                            <a href="#" class="w-12 h-12 bg-accent/20 rounded-xl flex items-center justify-center text-accent hover:bg-accent hover:text-white transition-all social-icon-bounce">
                                 <i class="fab fa-line"></i>
                             </a>
                         </div>
@@ -802,13 +934,16 @@
                     <a href="tel:+66934392320" class="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-accent transition-colors">
                         <i class="fas fa-phone"></i>
                     </a>
-                    <a href="#" class="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-accent2 transition-colors">
+                    <a href="https://facebook.com/yoonnadi.htet.391" target="_blank" rel="noopener noreferrer" class="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-accent2 transition-colors">
                         <i class="fab fa-facebook-f"></i>
+                    </a>
+                    <a href="https://www.instagram.com/its_boring_yoon?igsh=MXN1bWdobjVpb3o3MA==" target="_blank" rel="noopener noreferrer" class="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-pink-500 transition-colors">
+                        <i class="fab fa-instagram"></i>
                     </a>
                 </div>
                 <div class="border-t border-gray-700 pt-8">
                     <p class="text-gray-500 text-sm">
-                        © 2024 Yoon Nadi Htet. Made with 💖 | All Rights Reserved
+                        © 2026 Yoon Nadi Htet. Made with 💖 | All Rights Reserved
                     </p>
                 </div>
             </div>

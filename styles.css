@@ -798,3 +798,294 @@ img:not([loading]) {
     from { transform: rotate(0deg); }
     to { transform: rotate(360deg); }
 }
+
+/* ============================================
+   LIGHTBOX STYLES - Full Image View
+   ============================================ */
+.lightbox-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.95);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10000;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+}
+
+.lightbox-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.lightbox-overlay img {
+    max-width: 90%;
+    max-height: 85vh;
+    object-fit: contain;
+    border-radius: 16px;
+    box-shadow: 0 25px 80px rgba(255, 107, 157, 0.3);
+    border: 4px solid white;
+}
+
+.lightbox-close {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    font-size: 50px;
+    color: white;
+    background: rgba(255, 107, 157, 0.8);
+    border: none;
+    cursor: pointer;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    z-index: 10001;
+}
+
+.lightbox-close:hover {
+    background: #FF6B9D;
+    transform: rotate(90deg) scale(1.1);
+}
+
+.lightbox-prev,
+.lightbox-next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 40px;
+    color: white;
+    background: rgba(255, 107, 157, 0.8);
+    border: none;
+    cursor: pointer;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    z-index: 10001;
+}
+
+.lightbox-prev {
+    left: 20px;
+}
+
+.lightbox-next {
+    right: 20px;
+}
+
+.lightbox-prev:hover,
+.lightbox-next:hover {
+    background: #FF6B9D;
+    transform: translateY(-50%) scale(1.15);
+}
+
+.lightbox-caption {
+    position: absolute;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: white;
+    font-size: 1.2rem;
+    font-weight: 600;
+    text-align: center;
+    background: linear-gradient(135deg, rgba(255, 107, 157, 0.9), rgba(255, 143, 171, 0.9));
+    padding: 15px 30px;
+    border-radius: 30px;
+    max-width: 90%;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+/* Lightbox Animations */
+@keyframes slideInRight {
+    from {
+        opacity: 0;
+        transform: translateX(50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes slideInLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes fadeOut {
+    from {
+        opacity: 1;
+        transform: scale(1);
+    }
+    to {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+}
+
+/* ============================================
+   KID-FRIENDLY CUTE ANIMATIONS
+   ============================================ */
+
+/* Social Icon Bounce */
+.social-icon-bounce {
+    transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.social-icon-bounce:hover {
+    transform: translateY(-8px) scale(1.1);
+    animation: wiggle 0.5s ease;
+}
+
+/* Floating Bubbles Animation */
+@keyframes bubbleFloat {
+    0% {
+        transform: translateY(0) rotate(0deg);
+        opacity: 0;
+    }
+    10% {
+        opacity: 0.3;
+    }
+    90% {
+        opacity: 0.3;
+    }
+    100% {
+        transform: translateY(-100vh) rotate(360deg);
+        opacity: 0;
+    }
+}
+
+/* Rainbow Text Animation */
+.rainbow-text {
+    background: linear-gradient(
+        90deg,
+        #FF6B9D, #FFD93D, #6BCB77, #4D96FF, #FF6B9D
+    );
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: rainbowText 3s linear infinite;
+}
+
+@keyframes rainbowText {
+    0% { background-position: 0% center; }
+    100% { background-position: 200% center; }
+}
+
+/* Cute Wobble on Cards */
+.philosophy-card:hover,
+.stat-card:hover {
+    animation: cuteWobble 0.5s ease;
+}
+
+@keyframes cuteWobble {
+    0%, 100% { transform: translateY(-8px) rotate(0deg); }
+    25% { transform: translateY(-8px) rotate(2deg); }
+    75% { transform: translateY(-8px) rotate(-2deg); }
+}
+
+/* View Button in Gallery */
+.view-btn {
+    display: inline-block;
+    margin-top: 10px;
+    background: rgba(255, 255, 255, 0.2);
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    backdrop-filter: blur(5px);
+    transition: all 0.3s ease;
+}
+
+.gallery-item:hover .view-btn {
+    background: white;
+    color: #FF6B9D;
+    transform: scale(1.05);
+}
+
+/* Bouncy Buttons */
+.btn-primary:active,
+.btn-secondary:active {
+    transform: scale(0.95);
+}
+
+/* Cute Cursor Trail (optional) */
+.cursor-sparkle {
+    position: fixed;
+    pointer-events: none;
+    font-size: 1rem;
+    z-index: 9999;
+    animation: sparkleTrail 0.8s ease-out forwards;
+}
+
+@keyframes sparkleTrail {
+    0% {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+    100% {
+        opacity: 0;
+        transform: scale(0.3) translateY(-30px);
+    }
+}
+
+/* Mobile Responsive Lightbox */
+@media (max-width: 768px) {
+    .lightbox-close {
+        top: 10px;
+        right: 10px;
+        width: 50px;
+        height: 50px;
+        font-size: 35px;
+    }
+    
+    .lightbox-prev,
+    .lightbox-next {
+        width: 45px;
+        height: 45px;
+        font-size: 25px;
+    }
+    
+    .lightbox-prev {
+        left: 10px;
+    }
+    
+    .lightbox-next {
+        right: 10px;
+    }
+    
+    .lightbox-caption {
+        font-size: 0.9rem;
+        padding: 10px 20px;
+        bottom: 20px;
+    }
+    
+    .lightbox-overlay img {
+        max-width: 95%;
+        max-height: 70vh;
+    }
+}
+
+/* Extra floating shapes */
+.shape-7 { top: 30%; left: 85%; animation-delay: 2.5s; }
+.shape-8 { top: 60%; left: 8%; animation-delay: 3.5s; }
+.shape-9 { top: 5%; left: 50%; animation-delay: 1.5s; }
+.shape-10 { top: 95%; left: 70%; animation-delay: 4.5s; }
