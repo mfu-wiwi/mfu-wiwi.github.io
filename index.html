@@ -5,15 +5,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Yoon Nadi Htet | English Teacher</title>
     <meta name="description" content="Yoon Nadi Htet - Dedicated English Teacher with passion for young learners">
+    <meta name="keywords" content="English Teacher, Young Learners, Education, Teaching, Yoon Nadi Htet, NELC, Thailand">
+    <meta name="robots" content="index, follow">
     
-    <!-- Open Graph / Facebook -->
+    <!-- Open Graph / Facebook / Messenger -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://yoonnadihtet.me/">
     <meta property="og:title" content="Yoon Nadi Htet | English Teacher 👩‍🏫">
     <meta property="og:description" content="Dedicated English Teacher with 2+ years of experience. Passionate about making learning fun for young minds! 🎉">
     <meta property="og:image" content="https://yoonnadihtet.me/images/classroom.jpg">
+    <meta property="og:image:secure_url" content="https://yoonnadihtet.me/images/classroom.jpg">
+    <meta property="og:image:type" content="image/jpeg">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="Yoon Nadi Htet - English Teacher">
+    <meta property="og:site_name" content="Yoon Nadi Htet Portfolio">
+    <meta property="og:locale" content="en_US">
     
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image">
@@ -21,11 +28,27 @@
     <meta name="twitter:title" content="Yoon Nadi Htet | English Teacher 👩‍🏫">
     <meta name="twitter:description" content="Dedicated English Teacher with 2+ years of experience. Passionate about making learning fun for young minds! 🎉">
     <meta name="twitter:image" content="https://yoonnadihtet.me/images/classroom.jpg">
+    <meta name="twitter:image:alt" content="Yoon Nadi Htet - English Teacher">
+    
+    <!-- LinkedIn -->
+    <meta property="og:image" content="https://yoonnadihtet.me/images/classroom.jpg">
+    <meta name="image" property="og:image" content="https://yoonnadihtet.me/images/classroom.jpg">
+    
+    <!-- WhatsApp / Telegram / Discord -->
+    <meta property="og:image" itemprop="image" content="https://yoonnadihtet.me/images/classroom.jpg">
+    
+    <!-- Pinterest -->
+    <meta name="pinterest-rich-pin" content="true">
     
     <!-- Additional Meta -->
     <meta name="theme-color" content="#FF6B9D">
+    <meta name="msapplication-TileColor" content="#FF6B9D">
     <meta name="author" content="Yoon Nadi Htet">
     <link rel="canonical" href="https://yoonnadihtet.me/">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="images/classroom.jpg">
+    <link rel="apple-touch-icon" href="images/classroom.jpg">
     
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -178,7 +201,7 @@
                         <div class="absolute -inset-4 bg-gradient-to-r from-primary via-secondary to-accent rounded-full blur-2xl opacity-40 animate-pulse-slow"></div>
                         <div class="relative">
                             <div class="w-64 h-64 sm:w-80 sm:h-80 lg:w-96 lg:h-96 rounded-full overflow-hidden border-8 border-white shadow-2xl transform hover:scale-105 transition-transform duration-500 profile-glow">
-                                <img src="images/classroom.jpg" alt="Yoon Nadi Htet" class="w-full h-full object-cover">
+                                <img src="images/classroom.jpg" alt="Yoon Nadi Htet" class="w-full h-full object-cover object-top scale-90">
                             </div>
                             <div class="absolute -bottom-4 -right-4 bg-white rounded-2xl p-4 shadow-xl animate-float">
                                 <span class="text-4xl">👩‍🏫</span>
@@ -226,19 +249,31 @@
                 <div class="relative">
                     <div class="grid grid-cols-2 gap-4">
                         <div class="space-y-4">
-                            <div class="rounded-3xl overflow-hidden shadow-xl transform hover:scale-105 transition-all duration-300 hover:shadow-2xl">
+                            <div class="about-photo-item rounded-3xl overflow-hidden shadow-xl transform hover:scale-105 transition-all duration-300 hover:shadow-2xl cursor-pointer" onclick="openLightbox('images/teaching1.jpg', '✏️ Teaching Time - Engaging Young Minds')">
                                 <img src="images/teaching1.jpg" alt="Teaching" class="w-full h-48 object-cover">
+                                <div class="about-photo-overlay">
+                                    <span class="view-btn">👁️ View Full</span>
+                                </div>
                             </div>
-                            <div class="rounded-3xl overflow-hidden shadow-xl transform hover:scale-105 transition-all duration-300 hover:shadow-2xl">
+                            <div class="about-photo-item rounded-3xl overflow-hidden shadow-xl transform hover:scale-105 transition-all duration-300 hover:shadow-2xl cursor-pointer" onclick="openLightbox('images/teaching2.jpg', '📚 Classroom Fun and Learning')">
                                 <img src="images/teaching2.jpg" alt="With Students" class="w-full h-64 object-cover">
+                                <div class="about-photo-overlay">
+                                    <span class="view-btn">👁️ View Full</span>
+                                </div>
                             </div>
                         </div>
                         <div class="space-y-4 pt-8">
-                            <div class="rounded-3xl overflow-hidden shadow-xl transform hover:scale-105 transition-all duration-300 hover:shadow-2xl">
+                            <div class="about-photo-item rounded-3xl overflow-hidden shadow-xl transform hover:scale-105 transition-all duration-300 hover:shadow-2xl cursor-pointer" onclick="openLightbox('images/christmas1.jpg', '🎄 Christmas Joy with Students')">
                                 <img src="images/christmas1.jpg" alt="Christmas Event" class="w-full h-64 object-cover">
+                                <div class="about-photo-overlay">
+                                    <span class="view-btn">👁️ View Full</span>
+                                </div>
                             </div>
-                            <div class="rounded-3xl overflow-hidden shadow-xl transform hover:scale-105 transition-all duration-300 hover:shadow-2xl">
+                            <div class="about-photo-item rounded-3xl overflow-hidden shadow-xl transform hover:scale-105 transition-all duration-300 hover:shadow-2xl cursor-pointer" onclick="openLightbox('images/students1.jpg', '🌟 Happy Students Learning Together')">
                                 <img src="images/students1.jpg" alt="Students" class="w-full h-48 object-cover">
+                                <div class="about-photo-overlay">
+                                    <span class="view-btn">👁️ View Full</span>
+                                </div>
                             </div>
                         </div>
                     </div>
