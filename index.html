@@ -121,7 +121,7 @@
     <canvas id="confetti-canvas"></canvas>
 
     <!-- Navigation -->
-    <nav class="fixed w-full top-0 z-50 bg-white/90 backdrop-blur-md shadow-lg">
+    <nav class="fixed w-full top-0 z-50 bg-white/90 backdrop-blur-md shadow-lg nav-main">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center h-16 md:h-20">
                 <a href="#" class="flex items-center gap-2">
@@ -130,8 +130,10 @@
                 </a>
                 
                 <!-- Mobile menu button -->
-                <button id="mobile-menu-btn" class="md:hidden p-2 rounded-lg bg-primary/10 hover:bg-primary/20 transition-all">
-                    <i class="fas fa-bars text-primary text-xl"></i>
+                <button id="mobile-menu-btn" class="mobile-hamburger-btn md:hidden" aria-label="Toggle menu">
+                    <span class="hamburger-line line-1"></span>
+                    <span class="hamburger-line line-2"></span>
+                    <span class="hamburger-line line-3"></span>
                 </button>
 
                 <!-- Desktop menu -->
@@ -147,37 +149,49 @@
         </div>
 
         <!-- Mobile menu - Kid-Friendly Teacher Theme -->
-        <div id="mobile-menu" class="mobile-menu md:hidden">
-            <!-- Decorative floating elements -->
-            <div class="mobile-menu-deco mobile-menu-deco-1">🌟</div>
-            <div class="mobile-menu-deco mobile-menu-deco-2">📚</div>
-            <div class="mobile-menu-deco mobile-menu-deco-3">🎨</div>
-            
-            <div class="px-2 py-4 space-y-2">
-                <a href="#home" class="mobile-nav-link">
-                    <span class="nav-emoji">🏠</span>
-                    <span>Home</span>
+        <div id="mobile-menu" class="mobile-menu-container md:hidden">
+            <div class="mobile-menu-bg"></div>
+            <div class="mobile-menu-content">
+                <a href="#home" class="mobile-menu-item">
+                    <span class="menu-item-emoji">🏠</span>
+                    <span class="menu-item-text">Home</span>
+                    <span class="menu-item-arrow">→</span>
                 </a>
-                <a href="#about" class="mobile-nav-link">
-                    <span class="nav-emoji">👩‍🏫</span>
-                    <span>About Me</span>
+                <a href="#about" class="mobile-menu-item">
+                    <span class="menu-item-emoji">👩‍🏫</span>
+                    <span class="menu-item-text">About Me</span>
+                    <span class="menu-item-arrow">→</span>
                 </a>
-                <a href="#experience" class="mobile-nav-link">
-                    <span class="nav-emoji">💼</span>
-                    <span>Experience</span>
+                <a href="#experience" class="mobile-menu-item">
+                    <span class="menu-item-emoji">💼</span>
+                    <span class="menu-item-text">Experience</span>
+                    <span class="menu-item-arrow">→</span>
                 </a>
-                <a href="#gallery" class="mobile-nav-link">
-                    <span class="nav-emoji">📸</span>
-                    <span>Gallery</span>
+                <a href="#gallery" class="mobile-menu-item">
+                    <span class="menu-item-emoji">📸</span>
+                    <span class="menu-item-text">Gallery</span>
+                    <span class="menu-item-arrow">→</span>
                 </a>
-                <a href="#skills" class="mobile-nav-link">
-                    <span class="nav-emoji">⭐</span>
-                    <span>Skills</span>
+                <a href="#skills" class="mobile-menu-item">
+                    <span class="menu-item-emoji">⭐</span>
+                    <span class="menu-item-text">Skills</span>
+                    <span class="menu-item-arrow">→</span>
                 </a>
-                <a href="#contact" class="mobile-nav-link-btn">
-                    <span>💌</span>
-                    <span>Contact Me</span>
+                <a href="#contact" class="mobile-menu-cta">
+                    <span class="cta-sparkle">✨</span>
+                    <span>💌 Contact Me</span>
+                    <span class="cta-sparkle">✨</span>
                 </a>
+            </div>
+            <div class="mobile-menu-decorations">
+                <span class="deco-item deco-1">🌟</span>
+                <span class="deco-item deco-2">📚</span>
+                <span class="deco-item deco-3">🎨</span>
+                <span class="deco-item deco-4">🍎</span>
+                <span class="deco-item deco-5">✏️</span>
+            </div>
+        </div>
+    </nav>
             </div>
         </div>
     </nav>

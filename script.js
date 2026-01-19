@@ -162,64 +162,68 @@ function initFloatingBubbles() {
 function initMobileMenu() {
     const menuBtn = document.getElementById('mobile-menu-btn');
     const mobileMenu = document.getElementById('mobile-menu');
-    const menuIcon = menuBtn.querySelector('i');
+    
+    if (!menuBtn || !mobileMenu) return;
 
-    menuBtn.addEventListener('click', function() {
-        mobileMenu.classList.toggle('active');
-        menuBtn.classList.toggle('menu-open');
+    // Toggle menu on button click
+    menuBtn.addEventListener('click', function(e) {
+        e.stopPropagation();
         
-        // Toggle icon with animation
-        if (mobileMenu.classList.contains('active')) {
-            menuIcon.classList.remove('fa-bars');
-            menuIcon.classList.add('fa-times');
-            // Add haptic-like visual feedback
-            menuBtn.style.transform = 'scale(1.15)';
-            setTimeout(() => {
-                menuBtn.style.transform = '';
-            }, 150);
+        const isOpen = mobileMenu.classList.contains('active');
+        
+        if (isOpen) {
+            closeMenu();
         } else {
-            menuIcon.classList.remove('fa-times');
-            menuIcon.classList.add('fa-bars');
+            openMenu();
         }
     });
 
+    function openMenu() {
+        mobileMenu.classList.add('active');
+        menuBtn.classList.add('active');
+        // Prevent body scroll when menu is open
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closeMenu() {
+        mobileMenu.classList.remove('active');
+        menuBtn.classList.remove('active');
+        document.body.style.overflow = '';
+    }
+
     // Close menu when clicking a link with smooth animation
     const mobileLinks = mobileMenu.querySelectorAll('a');
-    mobileLinks.forEach((link, index) => {
+    mobileLinks.forEach(link => {
         link.addEventListener('click', function() {
-            // Add click effect
+            // Add click feedback
             this.style.transform = 'scale(0.95)';
             setTimeout(() => {
                 this.style.transform = '';
-            }, 100);
-            
-            // Delay menu close for visual feedback
-            setTimeout(() => {
-                mobileMenu.classList.remove('active');
-                menuBtn.classList.remove('menu-open');
-                menuIcon.classList.remove('fa-times');
-                menuIcon.classList.add('fa-bars');
+                closeMenu();
             }, 150);
         });
     });
 
     // Close menu when clicking outside
     document.addEventListener('click', function(e) {
-        if (!mobileMenu.contains(e.target) && !menuBtn.contains(e.target)) {
-            mobileMenu.classList.remove('active');
-            menuBtn.classList.remove('menu-open');
-            menuIcon.classList.remove('fa-times');
-            menuIcon.classList.add('fa-bars');
+        if (mobileMenu.classList.contains('active') && 
+            !mobileMenu.contains(e.target) && 
+            !menuBtn.contains(e.target)) {
+            closeMenu();
         }
     });
     
     // Close menu on escape key
     document.addEventListener('keydown', function(e) {
         if (e.key === 'Escape' && mobileMenu.classList.contains('active')) {
-            mobileMenu.classList.remove('active');
-            menuBtn.classList.remove('menu-open');
-            menuIcon.classList.remove('fa-times');
-            menuIcon.classList.add('fa-bars');
+            closeMenu();
+        }
+    });
+
+    // Close menu on window resize (tablet to desktop)
+    window.addEventListener('resize', function() {
+        if (window.innerWidth >= 768 && mobileMenu.classList.contains('active')) {
+            closeMenu();
         }
     });
 }
