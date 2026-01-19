@@ -158,7 +158,7 @@ function initFloatingBubbles() {
     }
 }
 
-// Mobile Menu Toggle
+// Mobile Menu Toggle - Enhanced with Kid-Friendly Animations
 function initMobileMenu() {
     const menuBtn = document.getElementById('mobile-menu-btn');
     const mobileMenu = document.getElementById('mobile-menu');
@@ -166,24 +166,40 @@ function initMobileMenu() {
 
     menuBtn.addEventListener('click', function() {
         mobileMenu.classList.toggle('active');
+        menuBtn.classList.toggle('menu-open');
         
-        // Toggle icon
+        // Toggle icon with animation
         if (mobileMenu.classList.contains('active')) {
             menuIcon.classList.remove('fa-bars');
             menuIcon.classList.add('fa-times');
+            // Add haptic-like visual feedback
+            menuBtn.style.transform = 'scale(1.15)';
+            setTimeout(() => {
+                menuBtn.style.transform = '';
+            }, 150);
         } else {
             menuIcon.classList.remove('fa-times');
             menuIcon.classList.add('fa-bars');
         }
     });
 
-    // Close menu when clicking a link
+    // Close menu when clicking a link with smooth animation
     const mobileLinks = mobileMenu.querySelectorAll('a');
-    mobileLinks.forEach(link => {
+    mobileLinks.forEach((link, index) => {
         link.addEventListener('click', function() {
-            mobileMenu.classList.remove('active');
-            menuIcon.classList.remove('fa-times');
-            menuIcon.classList.add('fa-bars');
+            // Add click effect
+            this.style.transform = 'scale(0.95)';
+            setTimeout(() => {
+                this.style.transform = '';
+            }, 100);
+            
+            // Delay menu close for visual feedback
+            setTimeout(() => {
+                mobileMenu.classList.remove('active');
+                menuBtn.classList.remove('menu-open');
+                menuIcon.classList.remove('fa-times');
+                menuIcon.classList.add('fa-bars');
+            }, 150);
         });
     });
 
@@ -191,6 +207,17 @@ function initMobileMenu() {
     document.addEventListener('click', function(e) {
         if (!mobileMenu.contains(e.target) && !menuBtn.contains(e.target)) {
             mobileMenu.classList.remove('active');
+            menuBtn.classList.remove('menu-open');
+            menuIcon.classList.remove('fa-times');
+            menuIcon.classList.add('fa-bars');
+        }
+    });
+    
+    // Close menu on escape key
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && mobileMenu.classList.contains('active')) {
+            mobileMenu.classList.remove('active');
+            menuBtn.classList.remove('menu-open');
             menuIcon.classList.remove('fa-times');
             menuIcon.classList.add('fa-bars');
         }
