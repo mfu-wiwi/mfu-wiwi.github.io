@@ -40,7 +40,7 @@ The website is fully responsive and works seamlessly on:
 
 ## 🚀 Live Demo
 
-Visit: [yoonnadihtet.me](https://yoonnadihtet.me)
+Visit: [yoonnadi.me](https://yoonnadi.me)
 
 ## 👩‍🏫 About Yoon
 
